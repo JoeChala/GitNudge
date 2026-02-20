@@ -1,4 +1,4 @@
-from git import Repo
+from git import Repo, InvalidGitRepositoryError, NoSuchPathError
 
 
 class GitService:
@@ -8,7 +8,9 @@ class GitService:
         try:
             Repo(path)
             return True
-        except:
+        except InvalidGitRepositoryError:
+            return False
+        except NoSuchPathError:
             return False
 
     @staticmethod
